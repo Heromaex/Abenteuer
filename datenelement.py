@@ -9,7 +9,7 @@ class Datenelement(object):
 # Diese Klasse speichert die ID des Raums um spezifische Methoden zu unterstützen
 # Sie enthält auch den Titel und die Geschichte
 class Raum(Datenelement):
-    def __init__(self, titel:str, story:str, *args, **kwargs):
+    def __init__(self, titel:str, story:int, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.rid = random.randint(1000000,9999999)
         self.titel = titel
