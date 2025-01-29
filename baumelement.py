@@ -2,11 +2,11 @@ from datenelement import *
 
 # Klasse Baumelement zum initialisieren der Klassen Knoten und Abschluss
 class Baumelement(object):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         return
 
 # Baumelement Knoten, Element des Baums der Daten speichert
-def Knoten(Baumelement):
+class Knoten(Baumelement):
     def __init__(self, daten:Datenelement, *args, **kwargs):
         super().__init__(self, *args, **kwargs)
         self.linker_nachfolger = Abschluss()
@@ -42,7 +42,7 @@ def Knoten(Baumelement):
         return daten.rid
 
 # Baumelement Abschluss, vollendet jeden Pfad des Baumes und ist Nachfolger eines Blattes
-def Abschluss(Baumelement):
+class Abschluss(Baumelement):
     def __init__(self, *args, **kwargs):
         super().__init__(self, *args, **kwargs)
 
