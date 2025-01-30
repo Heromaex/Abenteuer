@@ -1,3 +1,5 @@
 {
-	"0": "Hier sollte ein langer Text mit Geschichte stehen, aber 0 ist zu keinem Datenelement zugeteilt" 
+	"0": ["", "Hier sollte ein langer Text mit Geschichte stehen, aber 0 ist zu keinem Datenelement zugeteilt"],
+	"1": ["", ""],
+	"2": ["", ""]
 }

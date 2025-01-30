@@ -1,9 +1,10 @@
 import pygame
-from pygame import Rect,draw
 
 from screeninfo import get_monitors
 
 import random
+
+from sprites import *
 
 def initialize():
     pygame.init()
@@ -18,19 +19,29 @@ def render_elements(display, text:str, bild):
     font = pygame.font.SysFont('Comic Sans MS', 15)
     screen_x, screen_y = display.get_width(), display.get_height()
     
-    opt1 = Rect(1,1,10,10)
-    opt2 = Rect(10,1,50,500)
-    story = Rect(60,1,500,500)
-    text_surface = font.render(text, False, (0,0,0))
-
-    draw.rect(display, "black", opt1)
-    draw.rect(display, "black", opt2)
-    draw.rect(display, "gray", story)
-    display.blit(text_surface, (60, 1))
+    opt1 = Final()
+    opt1.hinzufuegen( Quadrat(color="white", size=[100,75], xy=[screen_x*0.2, screen_y*0.8]) )
+    opt1.hinzufuegen( Quadrat(rand=5, size=[100,75], xy=[screen_x*0.2, screen_y*0.8]) )
+    
+    opt2 = Final()
+    opt1.hinzufuegen( Quadrat(color="white", size=[100,75], xy=[screen_x*0.3, screen_y*0.8]) )
+    opt1.hinzufuegen( Quadrat(rand=5, size=[100,75], xy=[screen_x*0.3, screen_y*0.8]) )
+    
+    story = Final()
+    story.hinzufuegen( Quadrat(color="white", size=[1000,750], xy=[screen_x*0.01, screen_y*0.01]) )
+    story.hinzufuegen( Quadrat(rand=5, size=[1000,750], xy=[screen_x*0.01, screen_y*0.01]) )
+    
+    sprlist = [opt1,opt2,story]
+    for spr in sprlist:
+        for obj in spr.geben():
+            obj.malen(display)
+    
+    #text_surface = font.render(text, False, (0,0,0))
+    #display.blit(text_surface, (60, 1))
     
 
 def render(display, gid:int):
-    display.fill("white")
+    display.fill("gray")
     render_elements(display,"Jony",None)
     pygame.display.flip()
 

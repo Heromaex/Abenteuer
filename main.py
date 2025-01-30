@@ -9,11 +9,13 @@ import pygame
 class Adventure():
     spiel = Baum()
     
-    neud = Datenelement("Wald", 1)
+    neud = Raum("Wald", 1)
     neu1 = Knoten(neud)
     
-    neud = Datenelement("Dorf", 2)
+    neud = Raum("Dorf", 2)
     neu2 = Knoten(neud)
+
+    neud = Raum("", 3)
 
     def start():
         load()
