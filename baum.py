@@ -15,7 +15,13 @@ class Baum(object):
         # Rekursionsanfang
         ergebnis = self.anfang.suchen(rid)
         return ergebnis
-
+    
+    def einfuegen(self, raum:Baumelement, nach_name:str, rl:int):
+        self.anfang.einfuegen(raum, nach_name, rl)
+    
+    def wurzel_setzen(self, raum:Baumelement):
+        self.anfang = raum
+    
     # Fügt ein Element nach ID sortiert in den Baum ein
     def sortiert_einfuegen(self, element:Baumelement):
         self.anfang.sortiert_einfuegen_id(element)

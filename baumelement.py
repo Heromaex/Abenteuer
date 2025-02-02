@@ -24,7 +24,23 @@ class Knoten(Baumelement):
         elif rid < daten.id:
             return linker_nachfolger.suchen(rid)
         return rechter_nachfolger.suchen(rid)
-
+    
+    def einfuegen(self, raum:Baumelement, nach:str, rl:int):
+        if self.daten.info_geben == nach:
+            if rl >= 1:
+                self.rechter_nachfolger = self.rechter_nachfolger.einsetzen(raum, nr=rechter_nachfolger)
+            else:
+                self.linker_nachfolger = self.linker_nachfolger.einsetzen(raum, nl=linker_nachfolger)
+        else:
+            self.linker_nachfolger = self.linker_nachfolger.einfuegen(raum, nach, rl)
+            self.rechter_nachfolger = self.rechter_nachfolger.einfuegen(raum, nach, rl)
+        return self
+    
+    def einsetzen(raum:Baumelement, nr:Baumelement=Abschluss(), nl:Baumelement=Abschluss()):
+        raum.rechter_nachfolger = nr
+        raum.linker_nachfolger = nl
+        return raum
+    
     # Fügt den gegebenen Knoten korrekt ein
     # Gibt das gegebene Element an den Nachfolger weiter
     def sortiert_einfuegen(self, element:Baumelement):
@@ -53,6 +69,9 @@ class Abschluss(Baumelement):
     # Gibt zurück, dass der Knoten nicht gefunden wurde
     def suchen(self, rid):
         return None
+    
+    def einfuegen(self, raum:Baumelement, nach_name:str, rl:int):
+        return self
 
 def main():
     return

@@ -1,5 +1,21 @@
 {
-	"0": ["", "Hier sollte ein langer Text mit Geschichte stehen, aber 0 ist zu keinem Datenelement zugeteilt"],
-	"1": ["", ""],
-	"2": ["", ""]
+	"0": ["Vorlage", "Hier sollte ein langer Text mit Geschichte stehen, aber 0 ist zu keinem Datenelement zugeteilt"],
+	"1": ["Aussen", "Endlich bist du am Ziel deiner zweitätigen Wanderung angelangt. Du ziehst dein Schwert aus der Scheide, legst es griffbereit neben dir auf die Erde und seufzst erleichtert, während du dich auf die moosbewachsenen Felsen niederlässt, um einen Augenblick auszuruhen. Du räkelst dich, reibst dir die Augen und blickst schließlich hinauf zum Flammenden Berg. Der Berg wirkt wahrhaft bedrohlich. Die steile, zerklüftete Wand, die vor dir aufragt, sieht aus, als sei sie von den Krallen einer gigantischen Bestie zerfetzt worden. Spitze Felsklippen springen in unnatürlichen Winkeln in alle Richtungen. Auf dem Gipfel des Berges kannst du eine grausig rote Färbung erkennen - wahrscheinlich stammt sie von irgendwelchen exotischen Pflanzen -, die dem Berg seinen Namen verliehen hat. Vielleicht wird man nie genau wissen, was dort oben wächst, da es offensichtlich unmöglich ist, den Gipfel zu erklimmen. Und nun beginnt deine Schatzsuche. Vor dir liegt ein dunkler Höhleneingang. Du ergreifst dein Schwert, stehst auf und überlegst, welche Gefahren wohl vor dir liegen mögen. Entschlossen stößt du das Schwert in die Scheide und näherst dich dem Höhleneingang. Du blickst in das Dunkel der Höhle und siehst nichts als glitschige Wände und Wasserlachen auf dem felsigen Boden. Die Luft ist nasskalt. Du zündest deine Laterne an und schreitest vorsichtig in die Dunkelheit hinein. Spinnweben streifen dein Gesicht und du hörst das Scharren winziger Füßchen: wahrscheinlich Ratten. Nach ein paar Metern gabelt sich der Weg. Willst du nach Westen (1) oder nach Osten (2)?"],
+	"71": ["Wachtposten", "Nach einigen Metern macht der Gang eine Biegung nach Norden. Vorsichtig näherst du dich dem Wachtposten an der Ecke, und als du in die Felsnische blickst, siehst du ein sonderbares, koboldartiges Wesen in Lederrüstung, das auf seinem Posten eingenickt ist. Du versuchst auf Zehenspitzen an ihm vorbeizuschleichen. Versuch dein Glück. Wenn du Glück hast, schnarcht er unbeirrt weiter (1). Hast du jedoch Pech, trittst du auf ein paar Kiesel, die unter deinen Füßen laut knirschen, und er reißt die Augen auf (2)."],
+	"278": ["Holztür", ""],
+	"301": ["Gang", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""],
+	"": ["", ""]
 }
