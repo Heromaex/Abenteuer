@@ -11,13 +11,13 @@ class Adventure():
     spiel = Baum()
     spieler = Spieler()
     
-    neud = Raum(1)
+    neud = Raum("1")
     wurzel = Knoten(neud)
     
-    neud = Raum(71)
+    neud = Raum("71")
     neu1 = Knoten(neud)
 
-    neud = Raum(278)
+    neud = Raum("278")
     neu2 = Knoten(neud)
     
     spiel.wurzel_setzen(wurzel)

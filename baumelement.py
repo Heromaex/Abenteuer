@@ -5,6 +5,22 @@ class Baumelement(object):
     def __init__(self, *args, **kwargs):
         return
 
+# Baumelement Abschluss, vollendet jeden Pfad des Baumes und ist Nachfolger eines Blattes
+class Abschluss(Baumelement):
+    def __init__(self, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)
+
+    # Fügt das Element an dieser Position ein
+    def sortiert_einfuegen(self, element:Baumelement):
+        return element
+
+    # Gibt zurück, dass der Knoten nicht gefunden wurde
+    def suchen(self, rid):
+        return None
+    
+    def einfuegen(self, raum:Baumelement, nach_name:str, rl:int):
+        return self
+
 # Baumelement Knoten, Element des Baums der Daten speichert
 class Knoten(Baumelement):
     def __init__(self, daten:Datenelement, *args, **kwargs):
@@ -56,22 +72,6 @@ class Knoten(Baumelement):
     # Gibt die eigene ID aus
     def id_geben(self):
         return daten.rid
-
-# Baumelement Abschluss, vollendet jeden Pfad des Baumes und ist Nachfolger eines Blattes
-class Abschluss(Baumelement):
-    def __init__(self, *args, **kwargs):
-        super().__init__(self, *args, **kwargs)
-
-    # Fügt das Element an dieser Position ein
-    def sortiert_einfuegen(self, element:Baumelement):
-        return element
-
-    # Gibt zurück, dass der Knoten nicht gefunden wurde
-    def suchen(self, rid):
-        return None
-    
-    def einfuegen(self, raum:Baumelement, nach_name:str, rl:int):
-        return self
 
 def main():
     return

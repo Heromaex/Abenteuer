@@ -13,24 +13,24 @@ class Raum(Datenelement):
     def __init__(self, story:str, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.rid = random.randint(1000000,9999999)
-        self.titel = self.titel_holen()
         self.story = story
+        self.titel = self.titel_holen()
     
     def info_geben(self):
         return self.story
     
-    def titel_holen(self, datei:str="raume.json"):
+    def titel_holen(self, datei:str="raeume.json"):
         with open(datei, "r") as f:
             con = json.load(f)
-        return con[str(self.story)][0]
+        return con[self.story][0]
     
-    def geschichte_holen(self, datei:str="raume.json"):
+    def geschichte_holen(self, datei:str="raeume.json"):
         with open(datei, "r") as f:
             con = json.load(f)
         return con[str(self.story)][1]
 
-class Ende(Datelement):
-    def __init__(self, story:str, nach:str *args, **kwargs):
+class Ende(Datenelement):
+    def __init__(self, story:str, nach:str, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.story = story
         self.nach = nach

@@ -22,31 +22,51 @@ def render_elements(display, text:str, bild):
     opt1 = Final()
     opt1.hinzufuegen( Quadrat(color="white", size=[100,75], xy=[screen_x*0.2, screen_y*0.8]) )
     opt1.hinzufuegen( Quadrat(rand=5, size=[100,75], xy=[screen_x*0.2, screen_y*0.8]) )
+    textxy = opt1.geben()[0].xy
+    optsize = opt1.geben()[0].size
+    textx = textxy[0] + (optsize[0]/2.5)
+    texty = textxy[1] + (optsize[1]/3)
+    opt1.hinzufuegen( Text(text="1", xy=[textx,texty]) )
     
     opt2 = Final()
-    opt1.hinzufuegen( Quadrat(color="white", size=[100,75], xy=[screen_x*0.3, screen_y*0.8]) )
-    opt1.hinzufuegen( Quadrat(rand=5, size=[100,75], xy=[screen_x*0.3, screen_y*0.8]) )
+    opt2.hinzufuegen( Quadrat(color="white", size=[100,75], xy=[screen_x*0.3, screen_y*0.8]) )
+    opt2.hinzufuegen( Quadrat(rand=5, size=[100,75], xy=[screen_x*0.3, screen_y*0.8]) )
+    textxy = opt2.geben()[1].xy
+    optsize = opt2.geben()[1].size
+    textx = textxy[0] + (optsize[0]/2.5)
+    texty = textxy[1] + (optsize[1]/3)
+    opt2.hinzufuegen( Text(text="2", xy=[textx,texty]) )
     
     story = Final()
     story.hinzufuegen( Quadrat(color="white", size=[1000,750], xy=[screen_x*0.01, screen_y*0.01]) )
     story.hinzufuegen( Quadrat(rand=5, size=[1000,750], xy=[screen_x*0.01, screen_y*0.01]) )
     
-    sprlist = [opt1,opt2,story]
+    text = Final()
+    text.hinzufuegen( Text(text="Willkommen bei >> Der Hexenmeister des flammenden Bergs <<", xy=story.geben()[0].xy) )
+    text.hinzufuegen( Text(text="Zum starten bitte eine beliebige Taste unten drücken (1 oder 2)", xy=[story.geben()[0].xy[0], story.geben()[0].xy[1]+15]) )
+    
+    sprlist = [opt1,opt2,story,text]
     for spr in sprlist:
         for obj in spr.geben():
             obj.malen(display)
     
-    #text_surface = font.render(text, False, (0,0,0))
-    #display.blit(text_surface, (60, 1))
+    return sprlist
     
+def get_all_sprites(sprite_list:list):
+    final_list = []
+    for s in sprite_list:
+        final_list.append(s)
+    return final_list
 
 def render(display, gid:int):
     display.fill("gray")
-    render_elements(display,"Jony",None)
+    sprites = render_elements(display,"Jony",None)
     pygame.display.flip()
+    return sprites
 
 def load():
     screen = initialize()
+    sprites = []
     
     running = True
     clock = pygame.time.Clock()
@@ -57,9 +77,13 @@ def load():
                 running = False
             if event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
-                clicked_sprites = [s for s in sprites if s.rect.collidepoint(pos)]
+                clicked_sprites = []
+                for s in sprites:
+                    for o in s.geben():
+                        if (pos[0] > o.xy[0] and pos[1] > o.xy[1]) and (pos[0] < o.xy[0]+o.size[0] and pos[1] < o.xy[1]+o.size[1]):
+                            clicked_sprites.append(o)
     
-        render(screen, 0)
+        sprites = get_all_sprites(render(screen, 0))
         clock.tick(60)
 
 def main():

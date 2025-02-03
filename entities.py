@@ -8,7 +8,7 @@ class Entity(object):
         augenzahl = random.randint(2,12)
         return augenzahl + self.gewandtheit
     
-    def kampfkraft_vergleichen(self, gegner:Entity):
+    def kampfkraft_vergleichen(self, gegner):
         eigenkraft = self.kampfkraft_berechnen()
         gegnerkraft = enemy.kampfkraft_berechnen()
         if eigenkraft == gegnerkraft:
@@ -19,7 +19,7 @@ class Entity(object):
         self.staerke -= anzahl
 
 class Spieler(Entity):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
         self.start_gewandtheit = 6 + random.randint(1,6)
@@ -46,7 +46,7 @@ class Spieler(Entity):
             self.schaden(2)
 
 class Gegner(Entity):
-    def __init__(self, name:str, gewandtheit:int, staerke:int):
+    def __init__(self, name:str, gewandtheit:int, staerke:int, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
         self.name = name
