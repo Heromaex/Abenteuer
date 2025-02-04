@@ -32,7 +32,7 @@ class Knoten(Baumelement):
     # Methode suchen() gibt den gesuchten Knoten zurück
     # Wenn dieser Knoten die selbe ID hat, gibt er sich selbst zurück
     # Ansonten ruft er die Methode bei den Nachfolgern auf
-    def suchen(self, rid:int):
+    def suchen_id(self, rid:int):
         # Prüfen ob dieser Knoten gesucht wird
         if daten.id == rid:
             return self
@@ -40,6 +40,16 @@ class Knoten(Baumelement):
         elif rid < daten.id:
             return linker_nachfolger.suchen(rid)
         return rechter_nachfolger.suchen(rid)
+    
+    def suchen_name(self, rname:str):
+        # Prüfen ob dieser Knoten gesucht wird
+        if daten.info_geben() == rname:
+            ergebnis = self
+        else:
+            ergebnis = linker_nachfolger.suchen_name(rname)
+            if ergebnis == None:
+                ergebnis = rechter_nachfolger.suchen_name(rname)
+        return ergebnis
     
     def einfuegen(self, raum:Baumelement, nach:str, rl:int):
         if self.daten.info_geben == nach:

@@ -13,23 +13,22 @@ class Adventure():
     
     neud = Raum("1")
     wurzel = Knoten(neud)
-    
+    spiel.wurzel_setzen(wurzel)
+
     neud = Raum("71")
-    neu1 = Knoten(neud)
+    neu = Knoten(neud)
+    spiel.einfuegen(neu, "1", 0)
 
     neud = Raum("278")
-    neu2 = Knoten(neud)
-    
-    spiel.wurzel_setzen(wurzel)
-    spiel.einfuegen(neu1, "1", 0)
-    spiel.einfuegen(neu2, "1", 1)
+    neu = Knoten(neud)
+    spiel.einfuegen(neu, "1", 0)
 
     def start():
-        load()
+        load(self)
 
 def main():
     a = Adventure()
-    load()
+    a.start()
 
 if __name__ == "__main__":
     main()

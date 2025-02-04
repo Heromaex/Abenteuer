@@ -4,6 +4,7 @@ from screeninfo import get_monitors
 
 import random
 
+from baum import *
 from sprites import *
 
 def initialize():
@@ -64,7 +65,7 @@ def render(display, gid:int):
     pygame.display.flip()
     return sprites
 
-def load():
+def load(tree:Baum):
     screen = initialize()
     sprites = []
     
