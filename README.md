@@ -7,8 +7,8 @@
   - Um die Bibliotheken zu installieren, kann die Eingabeaufforderung geöffnet werden
   - Windows: Unten links unter Suche "cmd" eingeben
   - Folgende Befehle müssen ausgeführt werden
-    - pip install pygame
-    - pip install screeninfo
+    - pip install [pygame](https://pypi.org/project/pygame/)
+    - pip install [screeninfo](https://pypi.org/project/screeninfo/)
   - Sind beide Bibliotheken und Python installiert muss nun die zip-Datei heruntergeladen werden
   - Diese dann im Explorer extrahieren und fertig ist die Installation
 ## Ausführen
