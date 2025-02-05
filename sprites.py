@@ -4,6 +4,7 @@ from pygame import Rect, draw
 
 class Sprite(object):
     def __init__(self, name:str="Object", rand:int=0, size:list=[10,10], xy:list=[0,0], color="black", *args, **kwargs):
+        self.name = name
         self.rand = rand
         self.size = size
         self.xy = xy
@@ -12,6 +13,9 @@ class Sprite(object):
     
     def geben(self):
         return self.sprite
+    
+    def name_holen(self):
+        return self.name
 
 class Quadrat(Sprite):
     def __init__(self, *args, **kwargs):
@@ -36,9 +40,10 @@ class Text(Sprite):
     def malen(self, display):
         if self.wrap_to == None:
             display.blit(self.sprite, (self.xy[0]+5, self.xy[1]+5))
+            return self.text
         else:
             rect = Rect(self.wrap_to.sprite)
-            y = rect.top
+            y = rect.top + 5
             lineSpacing = -2
             fontHeight = self.sysfont.size("Tg")[1]
             
@@ -47,19 +52,21 @@ class Text(Sprite):
                 
                 if (y + fontHeight) > rect.bottom:
                     break
-                while ( self.sysfont.size(self.text[:i])[0] ) < ( rect.width and i < len(self.text) ):
+                while self.sysfont.size(self.text[:i])[0] < rect.width and i < len(self.text):
                     i += 1
                 if i < len(self.text):
                     i = self.text.rfind(" ", 0, i) + 1
                 
-                image = self.sysfont.render(self.text[i:], True, self.color)
-                display.blit(image, (rect.left, y))
+                image = self.sysfont.render(self.text[:i], True, self.color)
+                display.blit(image, (rect.left+10, y))
                 
                 y += fontHeight + lineSpacing
                 self.text = self.text[i:]
+            return self.text
 
 class Final(object):
     def __init__(self, name:str="Sprite"):
+        self.name = name
         self.liste = []
     
     def geben(self):
@@ -70,6 +77,9 @@ class Final(object):
             self.liste.append(objekt)
         else:
             self.liste.insert(pos-1, objekt)
+    
+    def name_holen(self):
+        return self.name
 
 def main():
     return

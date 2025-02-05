@@ -31,6 +31,9 @@ class Baum(object):
     # Fügt ein Element nach ID sortiert in den Baum ein
     def sortiert_einfuegen(self, element:Baumelement):
         self.anfang.sortiert_einfuegen_id(element)
+    
+    def starten(self):
+        return self.anfang
 
 def main():
     return

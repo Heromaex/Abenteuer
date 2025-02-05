@@ -5,6 +5,12 @@ import json
 class Datenelement(object):
     def __init__(self):
         return
+    
+    def info_geben(self):
+        return self.story
+    
+    def titel_holen(self, *args):
+        return None
 
 # Datelement Raum
 # Diese Klasse speichert die ID des Raums um spezifische Methoden zu unterstützen
@@ -16,9 +22,6 @@ class Raum(Datenelement):
         self.story = story
         self.titel = self.titel_holen()
     
-    def info_geben(self):
-        return self.story
-    
     def titel_holen(self, datei:str="raeume.json"):
         with open(datei, "r") as f:
             con = json.load(f)
@@ -27,13 +30,24 @@ class Raum(Datenelement):
     def geschichte_holen(self, datei:str="raeume.json"):
         with open(datei, "r") as f:
             con = json.load(f)
-        return con[str(self.story)][1]
+        return con[self.story][1]
+    
+    def weiter(self):
+        return 1
 
 class Ende(Datenelement):
-    def __init__(self, story:str, nach:str, *args, **kwargs):
+    def __init__(self, story:str, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.story = story
-        self.nach = nach
+        self.titel = "Ende"
+    
+    def geschichte_holen(self, datei:str="enden.json"):
+        with open(datei, "r") as f:
+            con = json.load(f)
+        return con[self.story][1]
+    
+    def weiter(self):
+        return 0
 
 def main():
     return
