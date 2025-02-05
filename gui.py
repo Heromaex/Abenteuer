@@ -16,7 +16,7 @@ def initialize():
     screen = pygame.display.set_mode(res[0])
     return screen
 
-def render_elements(display, text:str, bild):
+def render_elements(display, text_eingabe:str, bild):
     font = pygame.font.SysFont('Comic Sans MS', 15)
     screen_x, screen_y = display.get_width(), display.get_height()
     
@@ -43,8 +43,8 @@ def render_elements(display, text:str, bild):
     story.hinzufuegen( Quadrat(rand=5, size=[1000,750], xy=[screen_x*0.01, screen_y*0.01]) )
     
     text = Final()
-    text.hinzufuegen( Text(text="Willkommen bei >> Der Hexenmeister des flammenden Bergs <<", xy=story.geben()[0].xy) )
-    text.hinzufuegen( Text(text="Zum starten bitte eine beliebige Taste unten drücken (1 oder 2)", xy=[story.geben()[0].xy[0], story.geben()[0].xy[1]+15]) )
+    text.hinzufuegen( Text(text=text_eingabe, wrap_to=story.geben()[0]) )
+    #text.hinzufuegen( Text(text="Zum starten bitte eine beliebige Taste unten drücken (1 oder 2)", xy=[story.geben()[0].xy[0], story.geben()[0].xy[1]+15]) )
     
     sprlist = [opt1,opt2,story,text]
     for spr in sprlist:
@@ -61,7 +61,7 @@ def get_all_sprites(sprite_list:list):
 
 def render(display, gid:int):
     display.fill("gray")
-    sprites = render_elements(display,"Jony",None)
+    sprites = render_elements(display,"abc",None)
     pygame.display.flip()
     return sprites
 

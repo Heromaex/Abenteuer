@@ -22,17 +22,41 @@ class Quadrat(Sprite):
         draw.rect(display, self.color, self.sprite, width=self.rand)
 
 class Text(Sprite):
-    def __init__(self, text:str="Beispieltext", font:str="Comic Sans MS", text_size:int=15,  *args, **kwargs):
+    def __init__(self, text:str="Beispieltext", font:str="Comic Sans MS", text_size:int=15, wrap_to:Rect=None,  *args, **kwargs):
         super().__init__(*args, **kwargs)
         
+        self.text = text
         self.font = font
         self.text_size = text_size
 
-        sysfont = pygame.font.SysFont(self.font, self.text_size)
-        self.sprite = sysfont.render(text, False, (0,0,0))
+        self.sysfont = pygame.font.SysFont(self.font, self.text_size)
+        self.wrap_to = wrap_to
+        self.sprite = self.sysfont.render(text, True, (0,0,0))
     
     def malen(self, display):
-        display.blit(self.sprite, (self.xy[0]+5,self.xy[1]+5))
+        if self.wrap_to == None:
+            display.blit(self.sprite, (self.xy[0]+5, self.xy[1]+5))
+        else:
+            rect = Rect(self.wrap_to.sprite)
+            y = rect.top
+            lineSpacing = -2
+            fontHeight = self.sysfont.size("Tg")[1]
+            
+            while self.text:
+                i = 1
+                
+                if (y + fontHeight) > rect.bottom:
+                    break
+                while ( self.sysfont.size(self.text[:i])[0] ) < ( rect.width and i < len(self.text) ):
+                    i += 1
+                if i < len(self.text):
+                    i = self.text.rfind(" ", 0, i) + 1
+                
+                image = self.sysfont.render(self.text[i:], True, self.color)
+                display.blit(image, (rect.left, y))
+                
+                y += fontHeight + lineSpacing
+                self.text = self.text[i:]
 
 class Final(object):
     def __init__(self, name:str="Sprite"):
