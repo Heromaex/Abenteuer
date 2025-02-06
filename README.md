@@ -17,12 +17,15 @@
   - Wenn Python sich direkt wieder schliesst, versuche main.exe zu rechtsklicken (Windows 11: Weitere Optionen anzeigen) und "Edit with IDLE" drücken
   - Zum ausführen in der Datei F5 drücken, wenn Fehler vorhanden sind bitte kontaktieren und ich löse sie
 ## Was kann das Programm?
-  - Anfangs wird eine Erklärung zum Spiel gegeben
+  - Anfangs wird eine Erklärung zum Spiel gegeben (Irgendwo drücken)
   - Wenn man auf 1 oder 2 drückt, startet man das Spiel
+  - Erst jetzt ist das rechte Menü verfügbar (aus Speichergründen)
   - Pro Raum kann man sich zwischen 2 Wegen entscheiden: 1 (links) oder 2 (rechts) ((Oder andere Optionen falls angegeben))
   - Jede Entscheidung zählt, man kann also auch falsch entscheiden und sterben, oder man trifft die richtigen Entscheidungen und findet den Ausgang
   - Ausserdem gibt es ein Inventar mit einem Rucksack, Gold, Edelsteinen, Zaubertränken und Proviant
-  - Für manche Entscheidungen muss man sein Glück nutzen, hierfür können Glückspunkte verwendet werden
-  - Manchmal trifft man auf Kämpfe, in dem Fall wird die Stärke und Gewandtheit verwendet
-  - Zusätzlich kann man Einstellungen auswählen wie z.B. die Schriftgröße ändern
-  - Man kann auch seine eigenen Räume und Enden hinzufügen oder existierende Entfernen
+  - ~~Für manche Entscheidungen muss man sein Glück nutzen, hierfür können Glückspunkte verwendet werden~~
+  - ~~Manchmal trifft man auf Kämpfe, in dem Fall wird die Stärke und Gewandtheit verwendet~~
+  - Zusätzlich kann man Einstellungen auswählen wie z.B. ~~die Schriftgröße ändern~~
+  - Man kann auch seine eigenen Räume und Enden hinzufügen (Klappt nur innerhalb des Programms)
+  - Mit dem Knopf "Entfernen" entfernt man den aktuellen Raum, dannach sollte auf Zurücksetzen gedrückt werden
+    - Beim Neustart, wenn man die selben Schritte ausführt, landet man im "Nichts" oder in dem jeweils nächsten Folgenden Raum
