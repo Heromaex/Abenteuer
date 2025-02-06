@@ -72,9 +72,13 @@ def render_elements(display, titel:str, text_eingabe:str, bild, right_screen:lis
     stats.hinzufuegen( Quadrat(color="white", size=[150,30], xy=[1050+screen_x*0.01,105+screen_y*0.05]) )
     stats.hinzufuegen( Text(text="Statistik", xy=[1050+screen_x*0.01,105+screen_y*0.05]) )
     
+    einfuegen = Final(name="add")
+    einfuegen.hinzufuegen( Quadrat(color="white", size=[150,30], xy=[1050+screen_x*0.01,140+screen_y*0.05]) )
+    einfuegen.hinzufuegen( Text(text="Hinzufügen", xy=[1050+screen_x*0.01,140+screen_y*0.05]) )
+    
     entfernen = Final(name="remove")
-    entfernen.hinzufuegen( Quadrat(color="white", size=[150,30], xy=[1050+screen_x*0.01,140+screen_y*0.05]) )
-    entfernen.hinzufuegen( Text(text="Entfernen", xy=[1050+screen_x*0.01,140+screen_y*0.05]) )
+    entfernen.hinzufuegen( Quadrat(color="white", size=[150,30], xy=[1050+screen_x*0.01,175+screen_y*0.05]) )
+    entfernen.hinzufuegen( Text(text="Entfernen", xy=[1050+screen_x*0.01,175+screen_y*0.05]) )
     
     sidemenu = Final(name="sidemenu")
     sidemenu.hinzufuegen( Quadrat(color="white", size=[500,750], xy=[1250+screen_x*0.01, screen_y*0.05]) )
@@ -89,7 +93,7 @@ def render_elements(display, titel:str, text_eingabe:str, bild, right_screen:lis
             sidemenu.hinzufuegen( Text(text=format_char(fill_vars(line, new_variables)), xy=[sidemenu.geben()[0].xy[0]+5, sidemenu.geben()[0].xy[1]+15*i]) )
             i += 1
     
-    sprlist = [opt1,opt2,story,story_titel,text,settings,reset,inventar,stats,sidemenu,entfernen]
+    sprlist = [opt1,opt2,story,story_titel,text,settings,reset,inventar,stats,sidemenu,einfuegen,entfernen]
     for spr in sprlist:
         for obj in spr.geben():
             obj.malen(display)
@@ -131,7 +135,7 @@ def is_clicked(sprites:list, name:str):
     return False
 
 def check_right_screen(sprites:list):
-    for s in ["settings", "reset", "inventory", "stats", "sidemenu"]:
+    for s in ["settings", "reset", "inventory", "stats", "add", "remove", "sidemenu"]:
         if is_clicked(sprites, s):
             return s
     return None
