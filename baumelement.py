@@ -32,6 +32,9 @@ class Abschluss(Baumelement):
     
     def entfernen(self, *args):
         return self
+    
+    def kleinster_knoten(self, k):
+        return k
 
 # Baumelement Knoten, Element des Baums der Daten speichert
 class Knoten(Baumelement):
@@ -53,7 +56,7 @@ class Knoten(Baumelement):
     # Ansonten ruft er die Methode bei den Nachfolgern auf
     def suchen_id(self, rid:int):
         # Prüfen ob dieser Knoten gesucht wird
-        if daten.id == rid:
+        if self.daten.id_geben() == rid:
             return self
         # Ruft korrektes Nachfolger-Element auf zum weitersuchen
         elif rid < daten.id:
@@ -62,7 +65,7 @@ class Knoten(Baumelement):
     
     def suchen_name(self, rname:str):
         # Prüfen ob dieser Knoten gesucht wird
-        if daten.info_geben() == rname:
+        if self.daten.info_geben() == rname:
             ergebnis = self
         else:
             ergebnis = self.linker_nachfolger.suchen_name(rname)
@@ -99,10 +102,21 @@ class Knoten(Baumelement):
         return self
     
     def entfernen(self, name:str):
-        if self.daten.titel = name:
+        if self.daten.istGleich(name):
             k = self.rechter_nachfolger.kleinster_knoten(None)
+            if k == None:
+                return self.linker_nachfolger
+            else:
+                self.rechter_nachfolger = self.rechter_nachfolger.entfernen(k.daten.titel_holen())
+                k.linker_nachfolger = self.linker_nachfolger
+                k.rechter_nachfolger = self.rechter_nachfolger
+                return k
+        self.linker_nachfolger = self.linker_nachfolger.entfernen(name)
+        self.rechter_nachfolger = self.rechter_nachfolger.entfernen(name)
+        return self
     
-    def kleinster_knoten(k:Knoten):
+    def kleinster_knoten(self, k):
+        return self.linker_nachfolger.kleinster_knoten(self)
 
     # Gibt die eigene ID aus
     def id_geben(self):

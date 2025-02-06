@@ -72,6 +72,10 @@ def render_elements(display, titel:str, text_eingabe:str, bild, right_screen:lis
     stats.hinzufuegen( Quadrat(color="white", size=[150,30], xy=[1050+screen_x*0.01,105+screen_y*0.05]) )
     stats.hinzufuegen( Text(text="Statistik", xy=[1050+screen_x*0.01,105+screen_y*0.05]) )
     
+    entfernen = Final(name="remove")
+    entfernen.hinzufuegen( Quadrat(color="white", size=[150,30], xy=[1050+screen_x*0.01,140+screen_y*0.05]) )
+    entfernen.hinzufuegen( Text(text="Entfernen", xy=[1050+screen_x*0.01,140+screen_y*0.05]) )
+    
     sidemenu = Final(name="sidemenu")
     sidemenu.hinzufuegen( Quadrat(color="white", size=[500,750], xy=[1250+screen_x*0.01, screen_y*0.05]) )
     sidemenu.hinzufuegen( Quadrat(rand=5, size=[500,750], xy=[1250+screen_x*0.01, screen_y*0.05]) )
@@ -85,7 +89,7 @@ def render_elements(display, titel:str, text_eingabe:str, bild, right_screen:lis
             sidemenu.hinzufuegen( Text(text=format_char(fill_vars(line, new_variables)), xy=[sidemenu.geben()[0].xy[0]+5, sidemenu.geben()[0].xy[1]+15*i]) )
             i += 1
     
-    sprlist = [opt1,opt2,story,story_titel,text,settings,reset,inventar,stats,sidemenu]
+    sprlist = [opt1,opt2,story,story_titel,text,settings,reset,inventar,stats,sidemenu,entfernen]
     for spr in sprlist:
         for obj in spr.geben():
             obj.malen(display)
@@ -199,6 +203,9 @@ def load(tree:Baum, vorwort:bool=None):
                 if checked_sprite:
                     right_screen_titel = con[checked_sprite][0]
                     right_screen_text = con[checked_sprite][1]
+                
+                if is_clicked(clicked_sprites, "remove"):
+                    current.entfernen(current.daten.titel_holen())
         
         if not current.typ:
             render(screen, "--", player=tree.spieler)

@@ -11,6 +11,12 @@ class Datenelement(object):
     
     def titel_holen(self, *args):
         return None
+    
+    def istGleich(self, vgl):
+        return self.titel == vgl
+    
+    def istGroesser(self, vgl):
+        return len(self.titel) > len(vgl)
 
 # Datelement Raum
 # Diese Klasse speichert die ID des Raums um spezifische Methoden zu unterstützen
