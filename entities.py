@@ -26,9 +26,9 @@ class Spieler(Entity):
         self.start_staerke = 12 + random.randint(2,12)
         self.start_glueck = 6 + random.randint(1,6)
         
-        self.gewandtheit = 6 + random.randint(1,6)
-        self.staerke = 12 + random.randint(2,12)
-        self.glueck = 6 + random.randint(1,6)
+        self.gewandtheit = self.start_gewandtheit
+        self.staerke = self.start_staerke
+        self.glueck = self.start_glueck
         
         self.rucksack = []
         self.gold = 0

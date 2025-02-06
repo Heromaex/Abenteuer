@@ -8,13 +8,23 @@ import sys
 
 from baum import *
 from sprites import *
+from entities import *
 
 def exit_game():
     pygame.display.quit()
     pygame.quit()
     sys.exit()
 
-def render_elements(display, titel:str, text_eingabe:str, bild, right_screen:str=""):
+def fill_vars(text:str, variables:list):
+    for v in variables:
+        text = text.replace("{"+str(v[0])+"}", str(v[1]))
+    return text
+
+def format_char(text:str):
+    x = text.replace("Ã¤","\u00e4").replace("Ã¶","\u00f6").replace("Ã¼","\u00fc").replace("ÃŸ","\u00df")
+    return x
+
+def render_elements(display, titel:str, text_eingabe:str, bild, right_screen:list=["",[]], player:Spieler=None):
     screen_x, screen_y = display.get_width(), display.get_height()
     
     opt1 = Final(name="links")
@@ -65,7 +75,15 @@ def render_elements(display, titel:str, text_eingabe:str, bild, right_screen:str
     sidemenu = Final(name="sidemenu")
     sidemenu.hinzufuegen( Quadrat(color="white", size=[500,750], xy=[1250+screen_x*0.01, screen_y*0.05]) )
     sidemenu.hinzufuegen( Quadrat(rand=5, size=[500,750], xy=[1250+screen_x*0.01, screen_y*0.05]) )
-    sidemenu.hinzufuegen( Text(text=right_screen, wrap_to=sidemenu.geben()[0]) )
+    
+    if player != None:
+        sidemenu.hinzufuegen( Text(text=format_char(right_screen[0]), xy=[1250+screen_x*0.01, screen_y*0.05-30]) )
+        new_variables = [["ge",player.gewandtheit], ["st",player.start_staerke], ["gl",player.glueck], ["start_ge",player.start_gewandtheit], ["start_st",player.start_staerke], ["start_gl",player.start_glueck], ["gold",player.gold], ["gems",player.edelsteine], ["potions",player.zaubertraenke], ["food",player.proviant], ["backpack",player.rucksack]]
+        
+        i = 0
+        for line in right_screen[1]:
+            sidemenu.hinzufuegen( Text(text=format_char(fill_vars(line, new_variables)), xy=[sidemenu.geben()[0].xy[0]+5, sidemenu.geben()[0].xy[1]+15*i]) )
+            i += 1
     
     sprlist = [opt1,opt2,story,story_titel,text,settings,reset,inventar,stats,sidemenu]
     for spr in sprlist:
@@ -96,13 +114,9 @@ def get_all_sprites(sprite_list:list):
         final_list.append(s)
     return final_list
 
-def format_char(text:str):
-    x = text.replace("Ã¤","ae").replace("Ã¶","oe").replace("Ã¼","ue").replace("ÃŸ","ss")
-    return x
-
-def render(display, rid:str):
+def render(display, rid:str, right_screen=["",[]], player:Spieler=None):
     display.fill("gray")
-    sprites = render_elements(display,format_char(get_items(rid)[0]),format_char(get_items(rid)[1]),None)
+    sprites = render_elements(display,format_char(get_items(rid)[0]),format_char(get_items(rid)[1]),None,right_screen=right_screen,player=player)
     pygame.display.flip()
     return sprites
 
@@ -118,16 +132,19 @@ def check_right_screen(sprites:list):
             return s
     return None
 
-def load(tree:Baum):
+def load(tree:Baum, vorwort:bool=None):
     screen = initialize()
-    sprites = render(screen, "++")
+    if vorwort:
+        sprites = render(screen, "++")
+    else:
+        sprites = []
     running = True
     
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit_game()
-            if event.type == pygame.MOUSEBUTTONUP:
+            if event.type == pygame.MOUSEBUTTONUP or not vorwort:
                 running = False
     
     running = True
@@ -148,11 +165,13 @@ def load(tree:Baum):
                 
                 if is_clicked(clicked_sprites, "links") or is_clicked(clicked_sprites, "rechts"):
                     running = False
+                if is_clicked(clicked_sprites, "reset"):
+                    return True
         sprites = render(screen, "0")
     
     running = True
     current = tree.spiel.starten()
-    right_screen = ""
+    right_screen_text = ""
     right_screen_titel = ""
     
     while running:
@@ -171,20 +190,22 @@ def load(tree:Baum):
                     current = current.links_geben()
                 elif is_clicked(clicked_sprites, "rechts"):
                     current = current.rechts_geben()
+                if is_clicked(clicked_sprites, "reset"):
+                    return True
                 
                 with open("right_screen.json", "r") as f:
                     con = json.load(f)
                 checked_sprite = check_right_screen(clicked_sprites)
                 if checked_sprite:
                     right_screen_titel = con[checked_sprite][0]
-                    right_screen = con[checked_sprite][1]
+                    right_screen_text = con[checked_sprite][1]
         
         if not current.typ:
-            render(screen, "--")
+            render(screen, "--", player=tree.spieler)
             running = False
             break
         
-        sprites = get_all_sprites(render(screen, current.daten.story, right_screen=right_screen))
+        sprites = get_all_sprites(render(screen, current.daten.story, right_screen=[right_screen_titel,right_screen_text], player=tree.spieler))
         if not current.daten.weiter():
             running = False
         
@@ -202,6 +223,8 @@ def load(tree:Baum):
                     for o in s.geben():
                         if (pos[0] > o.xy[0] and pos[1] > o.xy[1]) and (pos[0] < o.xy[0]+o.size[0] and pos[1] < o.xy[1]+o.size[1]):
                             clicked_sprites.append(s)
+    
+    return False
 
 def main():
     load()

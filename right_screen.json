@@ -1,6 +1,6 @@
 {
 	"settings": ["Einstellungen", ["Text Größe: {{}}"]],
-	"reset": ["Zurücksetzen", ["Spiel wurde erfolgreich zurückgesetzt"]]
-	"inventory": ["Inventar", ["Gold: {gold}", "Edelsteine: {gems}", "", "Zaubertränke: {potions}", "", "Proviant: {food}", "", "Rucksack: {backpack}"],
-	"stats": ["Statistik", ["Start Gewandtheit: {start_g}", "Start Stärke: {start_s}", "Start Glück: {start_g}", "", "Gewandtheit: {ge}", "Stärke: {st}", "Glück: {gl}"]]
+	"reset": ["Zurücksetzen", ["Spiel wurde erfolgreich zurückgesetzt"]],
+	"inventory": ["Inventar", ["Gold: {gold}", "Edelsteine: {gems}", "", "Zaubertränke: {potions}", "", "Proviant: {food}", "", "Rucksack: {backpack}"]],
+	"stats": ["Statistik", ["Start Gewandtheit: {start_ge}", "Start Stärke: {start_st}", "Start Glück: {start_gl}", "", "Gewandtheit: {ge}", "Stärke: {st}", "Glück: {gl}"]]
 }

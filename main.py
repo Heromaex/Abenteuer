@@ -25,7 +25,11 @@ class Adventure(object):
         self.spiel.einfuegen(neu, "1", 1)
 
     def start(self):
-        load(self)
+        vorwort = True
+        running = True
+        while running:
+            running = load(self, vorwort=vorwort)
+            vorwort = False
 
 def main():
     a = Adventure()

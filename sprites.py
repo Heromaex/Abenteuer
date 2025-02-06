@@ -52,7 +52,7 @@ class Text(Sprite):
                 
                 if (y + fontHeight) > rect.bottom:
                     break
-                while self.sysfont.size(self.text[:i])[0] < rect.width and i < len(self.text):
+                while self.sysfont.size(self.text[:i])[0] < rect.width-20 and i < len(self.text):
                     i += 1
                 if i < len(self.text):
                     i = self.text.rfind(" ", 0, i) + 1
