@@ -29,6 +29,9 @@ class Abschluss(Baumelement):
         raum.rechter_nachfolger = self
         raum.linker_nachfolger = self
         return raum
+    
+    def entfernen(self, *args):
+        return self
 
 # Baumelement Knoten, Element des Baums der Daten speichert
 class Knoten(Baumelement):
@@ -94,6 +97,12 @@ class Knoten(Baumelement):
             self.linker_nachfolger = self.linker_nachfolger.sortiert_einfuegen(element)
         self.rechter_nachfolger = self.rechter_nachfolger.sortiert_einfuegen(element)
         return self
+    
+    def entfernen(self, name:str):
+        if self.daten.titel = name:
+            k = self.rechter_nachfolger.kleinster_knoten(None)
+    
+    def kleinster_knoten(k:Knoten):
 
     # Gibt die eigene ID aus
     def id_geben(self):

@@ -32,6 +32,9 @@ class Baum(object):
     def sortiert_einfuegen(self, element:Baumelement):
         self.anfang.sortiert_einfuegen_id(element)
     
+    def entfernen(self, name:str):
+        self.anfang.entfernen(name)
+    
     def starten(self):
         return self.anfang
 
